@@ -1,0 +1,40 @@
+[BILGI] 10 kural yuklendi
+[SIFRE] Satir 1 | Acik: [merhaba dunya 123]
+[KABUL] Satir 1
+
+
+[RED] ===== Satir 2 REDDEDILDI =====
+[RED] Kural    : Tehlikeli karakter
+[RED] Desen    : [<>'"`$;|\\]
+[RED] Konum    : 0 | Uzunluk: 1
+[RED] Eslesen  : '''
+[RED] =============================
+
+
+[RED] ===== Satir 3 REDDEDILDI =====
+[RED] Kural    : Tehlikeli karakter
+[RED] Desen    : [<>'"`$;|\\]
+[RED] Konum    : 0 | Uzunluk: 1
+[RED] Eslesen  : '<'
+[RED] =============================
+
+
+[RED] ===== Satir 4 REDDEDILDI =====
+[RED] Kural    : Path: ../
+[RED] Desen    : \.\./
+[RED] Konum    : 0 | Uzunluk: 3
+[RED] Eslesen  : '../'
+[RED] =============================
+
+[SIFRE] Satir 5 | Acik: [normal bir cumle]
+[KABUL] Satir 5
+
+
+[RED] ===== Satir 6 REDDEDILDI =====
+[RED] Kural    : Tehlikeli karakter
+[RED] Desen    : [<>'"`$;|\\]
+[RED] Konum    : 4 | Uzunluk: 1
+[RED] Eslesen  : ';'
+[RED] =============================
+
+[BILGI] Toplam 6 satir islendi
