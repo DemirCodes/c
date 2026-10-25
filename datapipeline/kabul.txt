@@ -1,0 +1,8 @@
+[1] Sifreli: 130c0918
+    Uzunluk: 4 | Kelime: 1 | SayiTop: 0
+[2] Sifreli: 130c0918
+    Uzunluk: 4 | Kelime: 1 | SayiTop: 0
+[3] Sifreli: 1408485f063157000103111d5753405e1c1d5e5920050d5a07000108540006491b5f592a0f0659110d165000540b0f
+    Uzunluk: 47 | Kelime: 2 | SayiTop: 108
+[4] Sifreli: 061a160704280f525a1007
+    Uzunluk: 11 | Kelime: 1 | SayiTop: 32
