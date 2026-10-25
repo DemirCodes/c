@@ -26,7 +26,7 @@ int logRotasyon(const char *dosyaAdi, long maxBoyut) {
 
     // Arşiv dosyası adı: dosya.log → dosya.log.1
     char arsiv[512];
-    snprintf(arsiv, sizeof(arsiv), "%s.1", dosyaAdi);
+    snprintf(arsiv, sizeof(arsiv), "%s.1", dosyaAdi); // snprintf : guvenlı string biçimlendirme fonksiyonu 
 
     // Eski arşivi sil (varsa)
     remove(arsiv);
