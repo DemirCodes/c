@@ -1,8 +1,36 @@
-[1] Sifreli: 130c0918
-    Uzunluk: 4 | Kelime: 1 | SayiTop: 0
-[2] Sifreli: 130c0918
-    Uzunluk: 4 | Kelime: 1 | SayiTop: 0
-[3] Sifreli: 1408485f063157000103111d5753405e1c1d5e5920050d5a07000108540006491b5f592a0f0659110d165000540b0f
-    Uzunluk: 47 | Kelime: 2 | SayiTop: 108
-[4] Sifreli: 061a160704280f525a1007
-    Uzunluk: 11 | Kelime: 1 | SayiTop: 32
+[1] AES: 81ab9030cce8093d8913ff3b:f715882371ff1d14f010492112c3de79:a58149fa7f9430ab40ebbe00d081329243
+    Uzunluk: 17 | Kelime: 3 | SayiTop: 123
+[5] AES: d4aba2095f27fe347aafcd56:e8a4aae67fc9920f4635862ca2af51a2:6b91d908231935596bb4695680f08568
+    Uzunluk: 16 | Kelime: 3 | SayiTop: 0
+[1] AES: 7ce4b322838ae0680a0f72d2:b6ac436e8ec708626693bb53d18a933f:403d61d73d58fc315244117b20bc11c560
+    Uzunluk: 17 | Kelime: 3 | SayiTop: 123
+[5] AES: 869387a483f06431771a09e0:48816ca4833d5f12f815c337c0c9ba5e:fb915e172b04f32bb163478dd00866fd
+    Uzunluk: 16 | Kelime: 3 | SayiTop: 0
+[1] AES: 8531ed5db3987e01defb7591:5885546dc0d0509f34dc189be2d8371f:25e0084a9368b3a6c4872d0e2c55a3027f
+    Uzunluk: 17 | Kelime: 3 | SayiTop: 123
+[4] AES: 4a83e039794efabb303700f4:6b628242c5336ef73efc513710ca5789:6f1d2d66f4ec7e645b81f21af3717e61
+    Uzunluk: 16 | Kelime: 3 | SayiTop: 0
+[1] AES: 90c5b24bc8b0c3d26a589b30:bbf2e3c841c716d6d8b8778dc223b0a8:88cfe259d8dc200423a1a33f4dd4092dbb
+    Uzunluk: 17 | Kelime: 3 | SayiTop: 123
+[4] AES: 7ea5767bc85a47591b5fe1d3:a61b06ebdbd1ab201a51d99ec3418666:deba0352de3789489dcdff3855174091
+    Uzunluk: 16 | Kelime: 3 | SayiTop: 0
+[1] AES: 272118bf2e94bf3548ac0605:5b6f57d26e53a58201ecca351ec09072:99edc847e9f1f327e87ff9444754de0e08
+    Uzunluk: 17 | Kelime: 3 | SayiTop: 123
+[4] AES: 5cff716ff69a044e1131f037:76d523dadec28f7088bd720e71a8c2df:495f8b3c941ad6c16ceb648e6e8a380e
+    Uzunluk: 16 | Kelime: 3 | SayiTop: 0
+[1] AES: 81cbe2afc4b15a9ca0dc88d7:851199762efcd5ee406a2ec550f1ca4b:fc0700cb20a04f4506c50ef0d5a5e1e631
+    Uzunluk: 17 | Kelime: 3 | SayiTop: 123
+[4] AES: fdad4ae54a8de7846ba96bcc:efd58e2a0337bdba36eb88878b853fbe:509f0dd26e697b9c08c036072aec3557
+    Uzunluk: 16 | Kelime: 3 | SayiTop: 0
+[1] AES: 9f2f58160bcdde2475028986:28ee7b0e849d3fdc1a098d3665838cb2:5d36d02c60ea5501c146977ee46b3ee218
+    Uzunluk: 17 | Kelime: 3 | SayiTop: 123
+[2] AES: ca5a274d1b8790a47455d9b8:653d61dacbc452b15d23456ef6b18fbc:22b218492f388125e9f54fbb24e32846
+    Uzunluk: 16 | Kelime: 3 | SayiTop: 0
+[3] AES: 6aa9bfc98524f178cee9654d:3279f1cef3f4d6d03a97cb8826fac932:423f6dbe997bf8924576ebbce9bd072ed2904b46f7d97a8c2ddc
+    Uzunluk: 26 | Kelime: 3 | SayiTop: 0
+[1] AES: 3af33eec2689246ce54a65ad:ddef0ad3c574e083bc49a577a47433a1:8fab73f3f2217baa42ad3a637f16b54a1f
+    Uzunluk: 17 | Kelime: 3 | SayiTop: 123
+[2] AES: ca793fc95ec5682d64990cbc:c5e949a1e9ea94e4b1b9a5a0b729d89a:9cb8ae1593ff5807cfb8bf2cc8fe5b70
+    Uzunluk: 16 | Kelime: 3 | SayiTop: 0
+[3] AES: b5ed9d8d82352ac9bd9f763f:71b3921773b8115aa4d4b5d544808810:885bba6e4d6287d2691406c258195a0e5687d56dcc12c3f5a648
+    Uzunluk: 26 | Kelime: 3 | SayiTop: 0

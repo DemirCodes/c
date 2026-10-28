@@ -1,0 +1,15 @@
+[RED] Satir 2 | Kural: Tehlikeli karakter | Konum: 0 | Uzunluk: 1
+[RED]   Desen: [<>'"`$;|\\]
+[RED]   Eslesen: '''
+[RED]   Ham: [' or '1'='1]
+
+[RED] Satir 3 | Kural: Tehlikeli karakter | Konum: 0 | Uzunluk: 1
+[RED]   Desen: [<>'"`$;|\\]
+[RED]   Eslesen: '<'
+[RED]   Ham: [<script>alert(1)</script>]
+
+[RED] Satir 5 | Kural: Tehlikeli karakter | Konum: 4 | Uzunluk: 1
+[RED]   Desen: [<>'"`$;|\\]
+[RED]   Eslesen: ';'
+[RED]   Ham: [test; rm -rf /]
+

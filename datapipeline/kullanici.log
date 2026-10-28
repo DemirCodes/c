@@ -1,7 +1,12 @@
 Veri gir (cikis: CTRL + D):
-[1] Sifreli: 0a0c080408230f410c010f0b501202555a
-    Kelime: 3 | SayiTop: 123 | Uzunluk: 17
-[5] Sifreli: 09060801082d4e0301064111445f5f02
-    Kelime: 3 | SayiTop: 0 | Uzunluk: 16
+[1] AES: 81ab9030cce8093d8913ff3b:f715882371ff1d14f010492112c3de79:a58149fa7f9430ab40ebbe00d081329243
+    Uzunluk: 17 | Kelime: 3 | SayiTop: 123
+[2] REDDEDILDI
+[3] REDDEDILDI
+[4] REDDEDILDI
+[5] AES: d4aba2095f27fe347aafcd56:e8a4aae67fc9920f4635862ca2af51a2:6b91d908231935596bb4695680f08568
+    Uzunluk: 16 | Kelime: 3 | SayiTop: 0
+[6] REDDEDILDI
 
-Toplam 6 satir islendi.
+=== OZET ===
+Toplam: 6 | Kabul: 2 | Red: 4

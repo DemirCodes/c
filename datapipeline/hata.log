@@ -1,40 +1,12 @@
 [BILGI] 10 kural yuklendi
+[BILGI] Kabul -> kabul.txt, Red -> red.log
+[BILGI] Log max boyut: 10 MB
+
+[BILGI] Anahtar bulunamadi, uretiliyor: sifre.key
+[BILGI] AES anahtari: 9519a1624dc580036c21cb383861a948ddb27033cb744c61355b52341444a935
 [SIFRE] Satir 1 | Acik: [merhaba dunya 123]
-[KABUL] Satir 1
-
-
-[RED] ===== Satir 2 REDDEDILDI =====
-[RED] Kural    : Tehlikeli karakter
-[RED] Desen    : [<>'"`$;|\\]
-[RED] Konum    : 0 | Uzunluk: 1
-[RED] Eslesen  : '''
-[RED] =============================
-
-
-[RED] ===== Satir 3 REDDEDILDI =====
-[RED] Kural    : Tehlikeli karakter
-[RED] Desen    : [<>'"`$;|\\]
-[RED] Konum    : 0 | Uzunluk: 1
-[RED] Eslesen  : '<'
-[RED] =============================
-
-
-[RED] ===== Satir 4 REDDEDILDI =====
-[RED] Kural    : Path: ../
-[RED] Desen    : \.\./
-[RED] Konum    : 0 | Uzunluk: 3
-[RED] Eslesen  : '../'
-[RED] =============================
-
 [SIFRE] Satir 5 | Acik: [normal bir cumle]
-[KABUL] Satir 5
+[BILGI] Toplam 6 satir, 2 kabul, 4 red
 
-
-[RED] ===== Satir 6 REDDEDILDI =====
-[RED] Kural    : Tehlikeli karakter
-[RED] Desen    : [<>'"`$;|\\]
-[RED] Konum    : 4 | Uzunluk: 1
-[RED] Eslesen  : ';'
-[RED] =============================
-
-[BILGI] Toplam 6 satir islendi
+[BILGI] Sinyal alindi, kapatiliyor...
+[BILGI] Temizlik tamamlandi

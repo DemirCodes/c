@@ -1,0 +1,4 @@
+[1] AES: f7ec10a7b07b318b8764f3ba:6326f3bd2282a29ff6056245db014c35:33394be554c30009f285dbf4ea419a6417
+    Uzunluk: 17 | Kelime: 3 | SayiTop: 123
+[4] AES: d59447e0b73c43f78ab279a8:83bb2f7b7bd7af6537505c9390d1b130:692efa7c87cd25fda0d0a42265452a88
+    Uzunluk: 16 | Kelime: 3 | SayiTop: 0
