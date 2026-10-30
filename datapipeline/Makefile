@@ -13,11 +13,13 @@ $(TARGET): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-test_aes: test_aes.c aes.o
-	$(CC) $(CFLAGS) -o test_aes test_aes.c aes.o $(LDFLAGS)
+test: $(TARGET) test_aes
+	@echo "Testler calisiyor..."
+	@./test_aes
+	@bash tests/test_pipeline.sh
 
-test: test_aes
-	./test_aes
+test_aes: test_aes.c aes.o sifreleme.o
+	$(CC) $(CFLAGS) -o test_aes test_aes.c aes.o sifreleme.o $(LDFLAGS)
 
 clean:
 	rm -f $(TARGET) $(OBJS) test_aes

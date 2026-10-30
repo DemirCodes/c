@@ -1,3 +1,3 @@
-merhaba dunya 123
+merhaba dunya
+test verisi 123
 normal bir cumle
-turkce karakterler: merhaba

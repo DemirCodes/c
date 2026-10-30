@@ -13,7 +13,7 @@
 #include <sys/stat.h>
 #include "cli.h"
 
-#define LOG_MAX_BOYUT  (10 * 1024 * 1024)   // 10 MB
+#define LOG_MAX_BOYUT  (10 * 1024 * 1024)
 #define MAKS_DENEME    3
 #define BEKLEME_MS     100
 
@@ -33,6 +33,8 @@ static void temizlik(void) {
 }
 
 char *satirOku(FILE *fp) {
+    if (fp == NULL) return NULL;
+
     Buffer *b = bufferOlustur(128);
     if (!b) return NULL;
 
@@ -91,22 +93,19 @@ int main(int argc, char *argv[]) {
     int kabulSayisi = 0;
     int redSayisi = 0;
 
-    // CLI ayrıştır
     Ayarlar ayarlar;
     int cliSonuc = cliAyristir(argc, argv, &ayarlar);
 
     if (cliSonuc == 2) {
-        // -h → yardım
         cliKullanim(argv[0]);
         return 0;
     }
     if (cliSonuc != 0) {
-        // Hata
         cliKullanim(argv[0]);
         return 1;
     }
 
-    // Girdi dosyasını aç (veya stdin)
+    // Girdi dosyasını aç
     FILE *girdi = stdin;
     if (ayarlar.girdiDosyasi) {
         girdi = fopen(ayarlar.girdiDosyasi, "r");
@@ -137,27 +136,6 @@ int main(int argc, char *argv[]) {
     g_kurallar = kurallar;
     g_kuralSayisi = kuralSayisi;
 
-    // Hedefler
-    Hedef *kabulHedefi = hedefAc(HEDEF_DOSYA, ayarlar.kabulDosyasi);
-    Hedef *redHedefi   = hedefAc(HEDEF_RED_LOG, ayarlar.redDosyasi);
-
-    g_kabulHedefi = kabulHedefi;
-    g_redHedefi = redHedefi;
-
-    if (!kabulHedefi || !redHedefi) {
-        fprintf(stderr, "[HATA] Hedefler acilamadi\n");
-        temizlik();
-        if (girdi != stdin) fclose(girdi);
-        return 1;
-    }
-
-    if (!ayarlar.quiet) {
-        fprintf(stderr, "[BILGI] %d kural yuklendi\n", kuralSayisi);
-        fprintf(stderr, "[BILGI] Kabul -> %s\n", ayarlar.kabulDosyasi);
-        fprintf(stderr, "[BILGI] Red   -> %s\n", ayarlar.redDosyasi);
-        fprintf(stderr, "[BILGI] Log max: %ld MB\n\n", ayarlar.logMaxBoyut / (1024 * 1024));
-    }
-
     // Anahtar
     unsigned char aesAnahtar[AES_ANAHTAR_UZUNLUK];
     if (!anahtarYukle(aesAnahtar, ayarlar.anahtarDosyasi)) {
@@ -168,51 +146,33 @@ int main(int argc, char *argv[]) {
     }
 
     if (!ayarlar.quiet) {
+        fprintf(stderr, "[BILGI] %d kural yuklendi\n", kuralSayisi);
+        fprintf(stderr, "[BILGI] Log max: %ld MB\n", ayarlar.logMaxBoyut / (1024 * 1024));
+
         char *anahtarHex = aesAnahtarHexKodla(aesAnahtar);
         fprintf(stderr, "[BILGI] AES anahtari: %s\n", anahtarHex);
         free(anahtarHex);
     }
 
-    if (!ayarlar.quiet)
-        fprintf(stdout, "Veri gir (cikis: CTRL + D):\n");
-
-    // Decrypt modu — kabul.txt'yi oku, çöz, ekrana yaz
+    // ===== DECRYPT MODU =====
     if (ayarlar.decrypt) {
         if (!ayarlar.quiet)
             fprintf(stderr, "[BILGI] Sifre cozme modu\n");
 
-        // Anahtar yükle
-        unsigned char aesAnahtar[AES_ANAHTAR_UZUNLUK];
-        if (!anahtarYukle(aesAnahtar, ayarlar.anahtarDosyasi)) {
-            fprintf(stderr, "[HATA] Anahtar yuklenemedi: %s\n", ayarlar.anahtarDosyasi);
-            return 1;
-        }
-
-        // Kabul dosyasını aç
-        FILE *kaynak = fopen(ayarlar.kabulDosyasi, "r");
-        if (!kaynak) {
-            perror("fopen kabul");
-            return 1;
-        }
-
+        FILE *kaynak = girdi;
         char *satir;
         int cozulenSayisi = 0;
         int hataSayisi = 0;
 
         while ((satir = satirOku(kaynak)) != NULL) {
-            // Format: "[N] AES: iv:tag:cipher"
-            // veya:  "    Uzunluk: ..."  (atla)
-
-            // "[N] AES: " kısmını bul
             char *aesBas = strstr(satir, "AES: ");
             if (!aesBas) {
                 free(satir);
-                continue;   // meta satır, atla
+                continue;
             }
 
-            aesBas += 5;   // "AES: " sonrası
+            aesBas += 5;
 
-            // "iv:tag:cipher" formatını ayrıştır
             char *ikiNokta1 = strchr(aesBas, ':');
             if (!ikiNokta1) { free(satir); continue; }
             *ikiNokta1 = '\0';
@@ -225,7 +185,6 @@ int main(int argc, char *argv[]) {
 
             char *cipherHex = ikiNokta2 + 1;
 
-            // Hex'leri çöz
             size_t ivLen, tagLen, cipherLen;
             unsigned char *iv = hexCoz(ivHex, &ivLen);
             unsigned char *tag = hexCoz(tagHex, &tagLen);
@@ -241,14 +200,12 @@ int main(int argc, char *argv[]) {
                 continue;
             }
 
-            // SifreliVeri yapısını doldur
             SifreliVeri sv;
             sv.sifreli = cipher;
             sv.uzunluk = cipherLen;
             memcpy(sv.iv, iv, AES_IV_UZUNLUK);
             memcpy(sv.tag, tag, AES_TAG_UZUNLUK);
 
-            // Çöz
             size_t cozLen;
             char *cozulen = aesCoz(aesAnahtar, &sv, &cozLen);
 
@@ -259,7 +216,7 @@ int main(int argc, char *argv[]) {
             } else {
                 hataSayisi++;
                 if (!ayarlar.quiet)
-                    fprintf(stderr, "[HATA] AES cozme basarisiz (bozuk veri veya yanlis anahtar)\n");
+                    fprintf(stderr, "[HATA] AES cozme basarisiz\n");
             }
 
             free(iv);
@@ -268,14 +225,35 @@ int main(int argc, char *argv[]) {
             free(satir);
         }
 
-        fclose(kaynak);
-
         if (!ayarlar.quiet) {
             fprintf(stderr, "\n[BILGI] Cozulen: %d | Hata: %d\n",
                     cozulenSayisi, hataSayisi);
         }
 
+        temizlik();
+        if (girdi != stdin) fclose(girdi);
         return hataSayisi > 0 ? 1 : 0;
+    }
+
+    // ===== NORMAL MOD =====
+    // Hedefler (sadece normal modda)
+    Hedef *kabulHedefi = hedefAc(HEDEF_DOSYA, ayarlar.kabulDosyasi);
+    Hedef *redHedefi   = hedefAc(HEDEF_RED_LOG, ayarlar.redDosyasi);
+
+    g_kabulHedefi = kabulHedefi;
+    g_redHedefi = redHedefi;
+
+    if (!kabulHedefi || !redHedefi) {
+        fprintf(stderr, "[HATA] Hedefler acilamadi\n");
+        temizlik();
+        if (girdi != stdin) fclose(girdi);
+        return 1;
+    }
+
+    if (!ayarlar.quiet) {
+        fprintf(stderr, "[BILGI] Kabul -> %s\n", ayarlar.kabulDosyasi);
+        fprintf(stderr, "[BILGI] Red   -> %s\n", ayarlar.redDosyasi);
+        fprintf(stdout, "Veri gir (cikis: CTRL + D):\n");
     }
 
     char *hamSatir;
@@ -408,13 +386,20 @@ int main(int argc, char *argv[]) {
         kelimeListesiSil(kl);
         veriSil(v);
 
-        if (satirNo % 1000 == 0) {
-            logRotasyon(ayarlar.redDosyasi, ayarlar.logMaxBoyut);
-            logRotasyon(ayarlar.kabulDosyasi, ayarlar.logMaxBoyut);
-        }
+    if (satirNo % 1000 == 0) {
+            if (logRotasyon(ayarlar.redDosyasi, ayarlar.logMaxBoyut) == 1) {
+                hedefKapat(redHedefi);
+                redHedefi = hedefAc(HEDEF_RED_LOG, ayarlar.redDosyasi);
+                g_redHedefi = redHedefi;
+            }
+            if (logRotasyon(ayarlar.kabulDosyasi, ayarlar.logMaxBoyut) == 1) {
+                hedefKapat(kabulHedefi);
+                kabulHedefi = hedefAc(HEDEF_DOSYA, ayarlar.kabulDosyasi);
+                g_kabulHedefi = kabulHedefi;
+            }
+    }
     }
 
-    // Özet
     if (!ayarlar.quiet) {
         fprintf(stdout, "\n=== OZET ===\n");
         fprintf(stdout, "Toplam: %d | Kabul: %d | Red: %d\n",

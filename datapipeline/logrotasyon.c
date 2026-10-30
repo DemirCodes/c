@@ -4,13 +4,8 @@
 #include <sys/stat.h>
 #include "logrotasyon.h"
 
-
-// logrostasyon : Bir log dosyası doldugunda veyahut zamanı doldugunda farklı bır log sayfası olusturulmasını saglıyor
-
-
 long dosyaBoyutu(const char *dosyaAdi) {
     if (!dosyaAdi) return 0;
-
     struct stat st;
     if (stat(dosyaAdi, &st) == 0) {
         return (long)st.st_size;
@@ -22,18 +17,21 @@ int logRotasyon(const char *dosyaAdi, long maxBoyut) {
     if (!dosyaAdi || maxBoyut <= 0) return -1;
 
     long boyut = dosyaBoyutu(dosyaAdi);
-    if (boyut < maxBoyut) return 0;   // rotasyon gerekmez
+    if (boyut < maxBoyut) return 0;
 
-    // Arşiv dosyası adı: dosya.log → dosya.log.1
+    // B seçeneği: .1, .2, .3 ... ilk boş numarayı bul
+    int numara = 1;
     char arsiv[512];
-    snprintf(arsiv, sizeof(arsiv), "%s.1", dosyaAdi); // snprintf : guvenlı string biçimlendirme fonksiyonu 
+    while (1) {
+        snprintf(arsiv, sizeof(arsiv), "%s.%d", dosyaAdi, numara);
+        if (dosyaBoyutu(arsiv) == 0) break;
+        numara++;
+    }
 
-    // Eski arşivi sil (varsa)
-    remove(arsiv);
-
-    // Mevcut dosyayı arşive taşı
+    // rename (TEK!)
     if (rename(dosyaAdi, arsiv) != 0) {
-        fprintf(stderr, "[HATA] Log rotasyonu basarisiz: %s\n", dosyaAdi);
+        fprintf(stderr, "[HATA] Log rotasyonu basarisiz: %s -> %s\n",
+                dosyaAdi, arsiv);
         return -1;
     }
 
